@@ -1,0 +1,23 @@
+{
+  "name": "express-api",
+  "version": "1.0.0",
+  "description": "API Restfull com Node e Express",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "node",
+    "jwp",
+    "zod"
+  ],
+  "author": "Rafael Cesar Gomes Benedicto",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
