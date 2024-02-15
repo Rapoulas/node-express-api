@@ -1,15 +1,28 @@
 import express from 'express'
+import {PORT, HOST} from './config.js'
+import {users} from './db-memory/user.js'
+
 const app = express()
-const port = 3000
 
 app.get('/', (req, res) => {
-  res.send({message: "Olá mundo!"})
+  res.send({message: "Bem-vindo a API!"})
 })
 
-app.get('/produto', (req, res) => {
-  res.send({message: 'Hello Produto!'})
+app.get('/user', (req, res) => {
+  res.json({
+    success: "Usuários listados com sucesso",
+    users
+  })
 })
 
-app.listen(port, () => {
-  console.log(`Servidor rodando na Porta http://localhost:${port}`)
+app.post('/user', (req, res) => {
+  const user = 
+  res.json({
+    success: "Usuários listados com sucesso",
+    users
+  })
+})
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na Porta ${HOST}:${PORT}`)
 })
