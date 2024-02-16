@@ -27,6 +27,24 @@ app.post('/user', (req, res) => {
   })
 })
 
+app.put('/user', (req, res) => {
+  const user = req.body
+  users[user.id - 1] = user
+  res.json({
+    success: "Usuários listados com sucesso",
+    users
+  })
+})
+
+app.delete('/user', (req, res) => {
+  const user = req.body
+  users[user.id - 1] = {}
+  res.json({
+    success: "Usuários listados com sucesso",
+    users
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na Porta ${HOST}:${PORT}`)
 })
