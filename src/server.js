@@ -22,26 +22,36 @@ app.post('/user', (req, res) => {
   user.id = users[users.length - 1].id + 1
   users.push(user)
   res.json({
-    success: "Usuários listados com sucesso",
+    success: "Usuários adicionado com sucesso",
     users
   })
 })
 
 app.put('/user', (req, res) => {
-  const user = req.body
-  users[user.id - 1] = user
+  const newUser = req.body
+  const usersResult = users.map(user => {
+    if (newUser.id === user.id){
+      return {
+        id: user.id,
+        name: newUser.name || user.name,
+        email: newUser.email || user.email,
+        avatar: newUser.avatar || user.avatar
+      }
+    }
+    return user
+  })
   res.json({
-    success: "Usuários listados com sucesso",
-    users
+    success: "Usuário atualizado com sucesso",
+    usersResult
   })
 })
 
 app.delete('/user', (req, res) => {
-  const user = req.body
-  users[user.id - 1] = {}
+  const id = req.body.id
+  const usersResult = users.filter(user => user.id !== id)
   res.json({
-    success: "Usuários listados com sucesso",
-    users
+    success: `Usuário ${id} removido com sucesso`,
+    usersResult
   })
 })
 
