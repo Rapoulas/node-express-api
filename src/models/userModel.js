@@ -40,6 +40,10 @@ const list = () => {
     return users
 }   
 
+const listById = (id) => {
+    return users.find(user => user.id === id)
+}   
+
 const create = (user) => {
     user.id = users[users.length - 1].id + 1
     users.push(user)
@@ -64,4 +68,4 @@ const remove = (id) => {
     return users.filter(user => user.id !== id)
 }
 
-export default {list, create, edit, remove, validateCreateUser: validateCreate, validateEdit, validateId}
+export default {list, create, edit, remove, validateCreateUser: validateCreate, validateEdit, validateId, listById}
