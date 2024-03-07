@@ -2,12 +2,11 @@ import userModel from "../../models/userModel.js"
 
 const create = (req, res) => {
     const user = req.body
-    const dataValidated = userModel.validateCreate(user)
-    console.log(dataValidated)
-
+    const dataValidated = userModel.validateCreateUser(user)
     if (!dataValidated.success){
-      res.status(401).json({
-        success: "Dados inválidos!"
+      res.status(400).json({
+        success: "Dados inválidos!",
+        fields: dataValidated.error.flatten().fieldErrors
       })
     }
 

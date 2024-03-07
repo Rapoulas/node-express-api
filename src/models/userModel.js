@@ -7,22 +7,33 @@ const userSchema = z.object({
     invalid_type_error: "ID deve ser um número",
   }), 
   name: z.string({
-    required_error: "Nome é obrigatório",
-    invalid_type_error: "Nome deve ser uma palavra",
-  }).min(3).max(200),
+  }).min(3, {message: "O nome do usuário deve ter no mínimo 3 caracteres"})
+    .max(200, {message: "O nome do usuário deve ter no máximo 200 caracteres"}),
   email: z.string({
-    required_error: "Email é obrigatório",
-    invalid_type_error: "Email deve ser uma palavra",
-  }).email(),
+  }).email({message: "Email inválido"}),
   avatar: z.string({
     required_error: "Avatar é obrigatório",
     invalid_type_error: "Avatar deve ser uma palavra",
-  }).url()
+  }).url({
+  })
 })
 
 const validateCreate = (user) => {
   const partialUserSchema = userSchema.partial({id: true})
   return partialUserSchema.safeParse(user)
+}
+
+const validateEdit = (user) => {
+  return userSchema.safeParse(user)
+}
+
+const validateId = (id) => {
+  const partialUserSchema = userSchema.partial({
+    name: true,
+    email: true,
+    avatar: true
+  })
+  return partialUserSchema.safeParse({id})
 }
 
 const list = () => {
@@ -35,7 +46,7 @@ const create = (user) => {
     return users
 }
 
-const edit = () => {
+const edit = (newUser) => {
     return users.map(user => {
         if (newUser.id === user.id){
           return {
@@ -53,4 +64,4 @@ const remove = (id) => {
     return users.filter(user => user.id !== id)
 }
 
-export default {list, create, edit, remove, validateCreateUser: validateCreate}
+export default {list, create, edit, remove, validateCreateUser: validateCreate, validateEdit, validateId}
