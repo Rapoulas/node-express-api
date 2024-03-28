@@ -1,24 +1,33 @@
 {
-  "name": "express-api",
+  "name": "express-api-1sem2024",
   "version": "1.0.0",
-  "description": "API Restfull com Node e Express",
+  "description": "API RestFull com Node e Express",
   "main": "src/server.js",
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "prisma:generate": "npx prisma generate",
+    "prisma:pull": "npx prisma db pull",
+    "prisma:push": "npx prisma db push"
   },
   "keywords": [
     "express",
     "api",
     "node",
-    "jwp",
+    "jwt",
     "zod"
   ],
-  "author": "Rafael Cesar Gomes Benedicto",
+  "author": "Rafael Cesar",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "bcrypt": "^5.1.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "prisma": "^5.11.0"
   }
 }
